@@ -1,3 +1,6 @@
+## Sample repository
+- https://www.npmjs.com/package/aws-s3-upload-ash
+
 # aws-s3-upload-vue
 
 ## Project setup
