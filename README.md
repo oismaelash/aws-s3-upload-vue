@@ -4,6 +4,9 @@
 ## Demo
 - https://awss3uploadash.ismaelnascimento.com
 
+## Video
+- https://youtu.be/9x5LGaL2W7E
+
 # aws-s3-upload-vue
 
 ## Project setup
