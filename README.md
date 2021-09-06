@@ -2,7 +2,7 @@
 - https://www.npmjs.com/package/aws-s3-upload-ash
 
 ## Demo
-- awss3uploadash.ismaelnascimento.com
+- https://awss3uploadash.ismaelnascimento.com
 
 # aws-s3-upload-vue
 
