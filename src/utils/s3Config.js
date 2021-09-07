@@ -13,8 +13,6 @@ const config = {
 let S3CustomClient = new AWSS3UploadAshClient(config);
 
 function s3Cliente(fileSelected) {
-  // eslint-disable-next-line no-debugger
-  debugger;
   console.log(fileSelected);
   return S3CustomClient.uploadFile(
     fileSelected,
