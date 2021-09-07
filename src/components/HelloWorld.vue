@@ -8,47 +8,35 @@
 </template>
 
 <script>
-import AWSS3UploadAshClient from "aws-s3-upload-ash";
+import s3Configs from "../utils/s3Config.js";
+import { watch, ref } from "vue";
 
 export default {
-  name: "HelloWorld",
-  data: function () {
-    return {
-      fileSelected: null,
-      config: {
-        bucketName: "aws-s3-upload-ash",
-        dirName:
-          "media" /* optional - when use: e.g BUCKET_ROOT/dirName/fileName.extesion */,
-        region: "us-east-1",
-        accessKeyId: process.env.VUE_APP_AWS_ACCESS_KEY,
-        secretAccessKey: process.env.VUE_APP_AWS_SECRET_KEY,
-        s3Url: "https://aws-s3-upload-ash.s3.amazonaws.com/",
-      },
-    };
-  },
-  methods: {
-    onChangeFile: function (event) {
-      console.log("fileSelected", event.target.files[0]);
-      this.fileSelected = event.target.files[0];
-    },
-    handleSendFile: function () {
+  setup() {
+    let fileSelected = ref(new File([""], ""));
+
+    watch(fileSelected, newFile => {
+      console.log("fileSelected", newFile.target.files[0]);
+      fileSelected.value = newFile.target.files[0];
+    });
+
+    function handleSendFile() {
       console.log(
         "process.env.VUE_APP_AWS_ACCESS_KEY",
         process.env.VUE_APP_AWS_ACCESS_KEY
       );
-      console.log("send file", this.fileSelected);
-      let S3CustomClient = new AWSS3UploadAshClient(this.config);
-      S3CustomClient.uploadFile(
-        this.fileSelected,
-        this.fileSelected.type,
-        undefined,
-        this.fileSelected.name,
-        undefined
-      )
-        .then((data) => console.log(data))
-        .catch((err) => console.error(err));
-    },
-  },
+      console.log("send file", fileSelected);
+
+      s3Configs(fileSelected.value)
+        .then(data => console.log(data))
+        .catch(err => console.error(err));
+    }
+
+    return {
+      fileSelected,
+      handleSendFile
+    };
+  }
 };
 </script>
 
