@@ -43,7 +43,7 @@ export default {
         this.fileSelected.type,
         undefined,
         this.fileSelected.name,
-        undefined
+        'public-read'
       )
         .then((data) => console.log(data))
         .catch((err) => console.error(err));
